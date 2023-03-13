@@ -11,7 +11,9 @@ def home(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
     return render(
-        request, "app/index.html", {"title": "Home Page", "year": datetime.now().year}
+        request,
+        "app/index.html",
+        {"title": "Домашняя страница", "year": datetime.now().year},
     )
 
 
@@ -22,8 +24,8 @@ def contact(request):
         request,
         "app/contact.html",
         {
-            "title": "Contact",
-            "message": "Your contact page.",
+            "title": "Контакт",
+            "message": "Ваша страница контакта.",
             "year": datetime.now().year,
         },
     )
@@ -36,8 +38,8 @@ def about(request):
         request,
         "app/about.html",
         {
-            "title": "About",
-            "message": "Your application description page.",
+            "title": "О нас",
+            "message": "Страница описания вашего приложения.",
             "year": datetime.now().year,
         },
     )

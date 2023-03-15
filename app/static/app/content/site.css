@@ -64,14 +64,12 @@ input[type="checkbox"].input-validation-error {
     height: 150px;
 }
 
-.navbar-brand {
-    float: left;
+.navbar-brand-img {
     padding: 5px 15px;
     padding-left: 15px;
-    font-size: 18px;
-    line-height: 20px;
 }
-.navbar-brand > img{
+
+.navbar-brand-img>img {
     width: 44px;
     height: 40px;
     padding-right: 10px;

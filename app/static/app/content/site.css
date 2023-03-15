@@ -63,3 +63,16 @@ input[type="checkbox"].input-validation-error {
     width: 150px;
     height: 150px;
 }
+
+.navbar-brand {
+    float: left;
+    padding: 5px 15px;
+    padding-left: 15px;
+    font-size: 18px;
+    line-height: 20px;
+}
+.navbar-brand > img{
+    width: 44px;
+    height: 40px;
+    padding-right: 10px;
+}

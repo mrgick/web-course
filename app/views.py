@@ -6,6 +6,8 @@ from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpRequest
 
+from django.views.generic.base import TemplateView
+
 
 def home(request):
     """Renders the home page."""
@@ -41,3 +43,13 @@ def about(request):
             "year": datetime.now().year,
         },
     )
+
+
+class UsefulLinks(TemplateView):
+    template_name = "app/useful_links.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["title"] = "Полезные ресурсы"
+        context["message"] = "Далее представлен перечень полезных ресурсов."
+        return context

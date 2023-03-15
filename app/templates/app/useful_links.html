@@ -1,15 +1,44 @@
 {% extends "app/layout.html" %}
-{% load staticfiles %}
 {% block content %}
 
 <h2>{{ title }}.</h2>
 <h3>{{ message }}</h3>
 
 <ul class="links">
-    <li><a href="https://tesera.ru/">Тесера</a> - российский портал о настольных играх</li>
-    <li><a href="https://boardgamegeek.com/">BoardGameGeek</a> - ведущий сайт о настольных играх</li>
-    <li><a href="https://www.reddit.com/r/boardgames/">r/boardgames</a> - тема на редите, посвященная настольным
-        играм, с обсуждениями и рекомендациями от пользователей.</li>
+    <li>
+        <div>
+            <div>
+                <a href="https://tesera.ru/">
+                    <img src="https://tesera.ru/i/n_visual-left.png" />
+                    <img src="https://tesera.ru/i/n2_h1.png" />
+                </a>
+            </div>
+            <a href="https://tesera.ru/">Тесера</a> - российский портал о настольных играх
+        </div>
+    </li>
+    <li>
+        <div>
+            <div>
+                <a href="https://boardgamegeek.com/">
+                    <img style="background-color: #322E4D;"
+                        src="https://cf.geekdo-static.com/images/logos/navbar-logo-bgg-b2.svg" />
+                </a>
+            </div>
+            <a href="https://boardgamegeek.com/">BoardGameGeek</a> - ведущий сайт о настольных играх
+        </div>
+    </li>
+    <li>
+        <div>
+            <div>
+                <a href="https://www.reddit.com/r/boardgames/">
+                    <img src="https://styles.redditmedia.com/t5_2qmjp/styles/communityIcon_41i6k88tpq271.png?width=256&v=enabled&s=8262bde771d040a3a86c93c0d937d2843d82486d"
+                        style="height: 100px;width: 100px;" />
+                </a>
+            </div>
+            <a href="https://www.reddit.com/r/boardgames/">r/boardgames</a> - тема на редите, посвященная настольным
+            играм, с обсуждениями и рекомендациями от пользователей.
+        </div>
+    </li>
 </ul>
 
 {% endblock %}

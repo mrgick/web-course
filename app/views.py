@@ -11,9 +11,7 @@ def home(request):
     """Renders the home page."""
     assert isinstance(request, HttpRequest)
     return render(
-        request,
-        "app/index.html",
-        {"title": "Домашняя страница", "year": datetime.now().year},
+        request, "app/index.html", {"title": "Главная", "year": datetime.now().year}
     )
 
 
@@ -24,8 +22,8 @@ def contact(request):
         request,
         "app/contact.html",
         {
-            "title": "Контакт",
-            "message": "Ваша страница контакта.",
+            "title": "Контакты",
+            "message": "Контакты компании PeaceDice.",
             "year": datetime.now().year,
         },
     )
@@ -39,7 +37,7 @@ def about(request):
         "app/about.html",
         {
             "title": "О нас",
-            "message": "Страница описания вашего приложения.",
+            "message": "Компания Peace Dice - новостной сайт о настольных играх.",
             "year": datetime.now().year,
         },
     )

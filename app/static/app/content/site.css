@@ -40,3 +40,26 @@ input[type="checkbox"].input-validation-error {
 .validation-summary-valid {
     display: none;
 }
+
+.home-logo {
+    display: flex;
+    align-items: center;
+}
+
+.home-logo-text {
+    flex: 1;
+}
+
+.home-logo-img {
+    padding: 10px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    width: 220px;
+    height: 150px
+}
+
+.home-logo-img>img {
+    width: 150px;
+    height: 150px;
+}

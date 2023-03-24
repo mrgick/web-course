@@ -1,0 +1,49 @@
+{% extends "app/layout.html" %}
+{% block content %}
+
+<h2>{{ title }}.</h2>
+<h3>{{ message }}</h3>
+<hr>
+
+<form method="POST" action="{% url 'feedback' %}" class="form-horizontal">
+    {% csrf_token %}
+    {% for field in form %}
+    <div class="form-group">
+        <label for="{{ field.id_for_label }}" class="col-md-4 control-label">
+            {{field.label}}
+            {% if field.field.required == True %}
+            <label style="color:rgb(168, 24, 24)">*</label>
+            {%endif%}
+        </label>
+        <div class="col-md-6">
+            {% if field.name == "rating" or field.name == "improvements" or field.name == "newsletter_signup"%}
+            {% for choice in field %}
+            <div class="form-check">
+                {{ choice.tag }}
+                <label class="form-check-label">{{ choice.choice_label }}</label>
+            </div>
+            {% endfor %}
+            {% else %}
+            {{ field }}
+            {%endif%}
+            {%if field.errors %}
+            <label style="color:rgb(168, 24, 24);margin-bottom:-10px;margin-top:5px;">{{field.errors}}</label>
+            {%endif%}
+
+        </div>
+    </div>
+    {% endfor %}
+
+    <div class="form-group">
+        <label for="{{ field.id_for_label }}" class="col-md-4 control-label">
+            <label style="color:rgb(168, 24, 24)">*</label> - поля обязательны для заполнения
+        </label>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-4 col-md-6">
+            <input type="submit" value="Отправить" class="btn btn-primary" style="width:100%" />
+        </div>
+    </div>
+</form>
+
+{% endblock %}

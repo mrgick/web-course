@@ -14,6 +14,7 @@ urlpatterns = [
     path("contact/", views.contact, name="contact"),
     path("about/", views.about, name="about"),
     path("useful-links/", views.UsefulLinks.as_view(), name="useful_links"),
+    path("feedback/", views.Feedback.as_view(), name="feedback"),
     path(
         "login/",
         LoginView.as_view(

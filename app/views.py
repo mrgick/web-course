@@ -6,7 +6,9 @@ from datetime import datetime
 from django.shortcuts import render
 from django.http import HttpRequest
 
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, View
+
+from .forms import FeedbackForm
 
 
 def home(request):
@@ -53,3 +55,34 @@ class UsefulLinks(TemplateView):
         context["title"] = "Полезные ресурсы"
         context["message"] = "Далее представлен перечень полезных ресурсов."
         return context
+
+
+class Feedback(View):
+    """Класс для работы со страницей отзывов."""
+
+    def get(self, request):
+        form = FeedbackForm()
+
+        message = {
+            "title": "Страница отзывов",
+            "message": "Далее представлена форма для оставления отзыва о сайте.",
+            "form": form,
+        }
+
+        return render(request, "app/pool.html", message)
+
+    def post(self, request):
+        form = FeedbackForm(request.POST)
+        if form.is_valid():
+            return render(
+                request,
+                "app/index.html",
+                {"title": "Главная", "year": datetime.now().year},
+            )
+        message = {
+            "title": "Страница отзывов",
+            "message": "Далее представлена форма для оставления отзыва о сайте.",
+            "form": form,
+        }
+
+        return render(request, "app/pool.html", message)

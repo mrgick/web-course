@@ -73,16 +73,19 @@ class Feedback(View):
 
     def post(self, request):
         form = FeedbackForm(request.POST)
-        if form.is_valid():
-            return render(
-                request,
-                "app/index.html",
-                {"title": "Главная", "year": datetime.now().year},
-            )
         message = {
             "title": "Страница отзывов",
             "message": "Далее представлена форма для оставления отзыва о сайте.",
             "form": form,
         }
+        if form.is_valid():
+            for field in form:
+                field.field.widget.attrs['disabled']=True
+            message.update(
+                {
+                    "good_news": True,
+                    "message": "Спасибо за оставление отзыва!"
+                }
+            )
 
         return render(request, "app/pool.html", message)

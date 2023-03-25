@@ -87,3 +87,8 @@ input[type="checkbox"].input-validation-error {
 .links>li>div>div {
     margin-bottom: 5px;
 }
+
+.btn,
+.form-control {
+    transition: background 0.5s linear;
+}

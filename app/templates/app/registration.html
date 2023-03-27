@@ -3,15 +3,34 @@
 {% block content %}
 
 <h2>Регистрация пользователя</h2>
+<hr>
+<form method="POST" action="{% url 'registration' %}" class="form-horizontal">
+    {% csrf_token %}
 
-<form method="POST"> {% csrf_token %}
-
-    <div>
-
-        {{ form.as_p}}
-
-        <button type="submit" class="save btn btn-default"> Зарегистрировать </button>
-
+    {% for field in form %}
+    <div class="form-group">
+        <label for="{{ field.id_for_label }}" class="col-md-2 control-label" title="{{ field.label }}">
+            {{field.label}}
+        </label>
+        <div class="col-md-8">
+            <div>
+                <div>
+                    {{ field }}
+                </div>
+                <div style="margin-top: 5px;">
+                    {{ field.help_text }}
+                </div>
+            </div>
+            {%if field.errors %}
+            <label style="color:rgb(168, 24, 24);margin-bottom:-10px;margin-top:5px;">{{field.errors}}</label>
+            {%endif%}
+        </div>
+    </div>
+    {% endfor %}
+    <div class="form-group" style="margin-top: 40px;">
+        <div class="col-md-offset-2 col-md-8">
+            <input type="submit" value="Зарегистрировать" class="btn btn-default" style="width:100%;" />
+        </div>
     </div>
 
 </form>

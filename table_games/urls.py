@@ -10,9 +10,9 @@ from app import forms, views
 
 
 urlpatterns = [
-    path("", views.home, name="home"),
-    path("contact/", views.contact, name="contact"),
-    path("about/", views.about, name="about"),
+    path("", views.Home.as_view(), name="home"),
+    path("contact/", views.Contact.as_view(), name="contact"),
+    path("about/", views.About.as_view(), name="about"),
     path("useful-links/", views.UsefulLinks.as_view(), name="useful_links"),
     path("feedback/", views.Feedback.as_view(), name="feedback"),
     path(

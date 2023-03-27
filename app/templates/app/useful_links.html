@@ -1,4 +1,5 @@
 {% extends "app/layout.html" %}
+{% load static %}
 {% block content %}
 
 <h2>{{ title }}.</h2>
@@ -9,8 +10,8 @@
         <div>
             <div>
                 <a href="https://tesera.ru/">
-                    <img src="https://tesera.ru/i/n_visual-left.png" />
-                    <img src="https://tesera.ru/i/n2_h1.png" />
+                    <img src="{% static 'app/img/tesera_2.png' %}" />
+                    <img src="{% static 'app/img/tesera_1.png' %}" />
                 </a>
             </div>
             <a href="https://tesera.ru/">Тесера</a> - российский портал о настольных играх
@@ -21,7 +22,7 @@
             <div>
                 <a href="https://boardgamegeek.com/">
                     <img style="background-color: #322E4D;"
-                        src="https://cf.geekdo-static.com/images/logos/navbar-logo-bgg-b2.svg" />
+                        src="{% static 'app/img/bgg.svg' %}" />
                 </a>
             </div>
             <a href="https://boardgamegeek.com/">BoardGameGeek</a> - ведущий сайт о настольных играх
@@ -31,7 +32,7 @@
         <div>
             <div>
                 <a href="https://www.reddit.com/r/boardgames/">
-                    <img src="https://styles.redditmedia.com/t5_2qmjp/styles/communityIcon_41i6k88tpq271.png?width=256&v=enabled&s=8262bde771d040a3a86c93c0d937d2843d82486d"
+                    <img src="{% static 'app/img/reddit.png' %}"
                         style="height: 100px;width: 100px;" />
                 </a>
             </div>

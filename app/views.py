@@ -3,12 +3,12 @@ Definition of views.
 """
 
 from datetime import datetime
-from django.shortcuts import render
-from django.http import HttpRequest
 
+from django.shortcuts import render, redirect
+from django.http import HttpRequest
 from django.views.generic.base import TemplateView, View
 
-from .forms import FeedbackForm
+from .forms import *
 
 
 def home(request):
@@ -80,12 +80,33 @@ class Feedback(View):
         }
         if form.is_valid():
             for field in form:
-                field.field.widget.attrs['disabled']=True
+                field.field.widget.attrs["disabled"] = True
             message.update(
-                {
-                    "good_news": True,
-                    "message": "Спасибо за оставление отзыва!"
-                }
+                {"good_news": True, "message": "Спасибо за оставление отзыва!"}
             )
 
         return render(request, "app/pool.html", message)
+
+
+class Registration(View):
+    """ Class for the registration. """
+
+    def get(self, request):
+        form = BootstrapRegistationForm()
+
+        return render(request, "app/registration.html", {"form": form})
+
+    def post(self, request):
+        form = BootstrapRegistationForm(request.POST)
+
+        if form.is_valid():
+            user = form.save(commit=False)  # не сохраняем автоматически данные формы
+            user.is_staff = False
+            user.is_active = True
+            user.is_superuser = False
+            user.date_joined = datetime.now()
+            user.last_login = datetime.now()
+            user.save()
+            return redirect("home")
+        else:
+            return render(request, "app/registration.html", {"form": form})

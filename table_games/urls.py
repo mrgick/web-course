@@ -25,5 +25,6 @@ urlpatterns = [
         name="login",
     ),
     path("logout/", LogoutView.as_view(next_page="/"), name="logout"),
+    path("registration/", views.Registration.as_view(), name="registration"),
     path("admin/", admin.site.urls),
 ]

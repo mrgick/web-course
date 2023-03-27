@@ -3,8 +3,7 @@ Definition of forms.
 """
 
 from django import forms
-from django.core.exceptions import ValidationError
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.utils.translation import gettext_lazy as _
 
 
@@ -19,6 +18,13 @@ class BootstrapAuthenticationForm(AuthenticationForm):
         label=_("Password"),
         widget=forms.PasswordInput({"class": "form-control", "placeholder": "Пароль"}),
     )
+
+
+class BootstrapRegistationForm(UserCreationForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self:
+            field.field.widget.attrs["class"] = "form-control"
 
 
 class FeedbackForm(forms.Form):

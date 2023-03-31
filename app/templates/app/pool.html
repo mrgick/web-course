@@ -9,7 +9,23 @@
 <h2>{{ title }}.</h2>
 <h3>{{ message }}</h3>
 <hr>
-
+{%if good_news %}
+<h4>Введённые данные:</h4>
+{% for field in form %}
+<div>
+    {% if field.name == "rating" or field.name == "improvements" or field.name == "newsletter_signup" or field.name == "source"%}
+    <span>{{field.label}} - </span>
+    {% for choice in field%}
+    {% if choice.data.selected %}
+    <span>"{{choice.choice_label}}"; </span>
+    {%endif%}
+    {%endfor%}
+    {%else%}
+    <span>{{field.label}} - "{{field.value}}";</span>
+    {%endif%}
+</div>
+{%endfor%}
+{%else%}
 <form method="POST" action="{% url 'feedback' %}" class="form-horizontal">
     {% csrf_token %}
     {% for field in form %}
@@ -44,13 +60,12 @@
             <label style="color:rgb(168, 24, 24)">*</label> - поля обязательны для заполнения
         </label>
     </div>
-    {%if not good_news %}
     <div class="form-group">
         <div class="col-md-offset-4 col-md-6">
             <input type="submit" value="Отправить" class="btn btn-primary" style="width:100%;" />
         </div>
     </div>
-    {%endif%}
 </form>
+{%endif%}
 
 {% endblock %}

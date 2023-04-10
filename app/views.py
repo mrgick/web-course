@@ -31,7 +31,7 @@ class Contact(TemplateView):
         context.update(
             {
                 "title": "Контакты",
-                "message": "Контакты компании PeaceDice.",
+                "message": "Контакты компании Dice In Peace.",
                 "year": datetime.now().year,
             }
         )
@@ -48,7 +48,7 @@ class About(TemplateView):
         context.update(
             {
                 "title": "О нас",
-                "message": "Компания Peace Dice - новостной сайт о настольных играх.",
+                "message": "Компания Dice In Peace - новостной сайт о настольных играх.",
                 "year": datetime.now().year,
             }
         )

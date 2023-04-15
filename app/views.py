@@ -6,8 +6,12 @@ from datetime import datetime
 
 from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView, View
+from django.views.generic import DetailView, ListView
+from django.db import models
+from .models import Blog
 
-from .forms import *
+from .forms import BootstrapRegistationForm, FeedbackForm
+from .utils import update_context
 
 
 class Home(TemplateView):
@@ -17,7 +21,7 @@ class Home(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context.update({"title": "Главная", "year": datetime.now().year})
+        update_context(context, {"title": "Главная"})
         return context
 
 
@@ -28,12 +32,9 @@ class Contact(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context.update(
-            {
-                "title": "Контакты",
-                "message": "Контакты компании Dice In Peace.",
-                "year": datetime.now().year,
-            }
+        update_context(
+            context,
+            {"title": "Контакты", "message": "Контакты компании Dice In Peace."},
         )
         return context
 
@@ -45,12 +46,12 @@ class About(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context.update(
+        update_context(
+            context,
             {
                 "title": "О нас",
                 "message": "Компания Dice In Peace - новостной сайт о настольных играх.",
-                "year": datetime.now().year,
-            }
+            },
         )
         return context
 
@@ -62,11 +63,12 @@ class UsefulLinks(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context.update(
+        update_context(
+            context,
             {
                 "title": "Полезные ресурсы",
                 "message": "Далее представлен перечень полезных ресурсов.",
-            }
+            },
         )
         return context
 
@@ -81,6 +83,7 @@ class Feedback(View):
             "title": "Страница отзывов",
             "message": "Далее представлена форма для оставления отзыва о сайте.",
             "form": form,
+            "year": datetime.now().year,
         }
 
         return render(request, "app/pool.html", message)
@@ -108,7 +111,11 @@ class Registration(View):
     def get(self, request):
         form = BootstrapRegistationForm()
 
-        return render(request, "app/registration.html", {"form": form})
+        return render(
+            request,
+            "app/registration.html",
+            {"form": form, "year": datetime.now().year},
+        )
 
     def post(self, request):
         form = BootstrapRegistationForm(request.POST)
@@ -123,4 +130,29 @@ class Registration(View):
             user.save()
             return redirect("home")
         else:
-            return render(request, "app/registration.html", {"form": form})
+            return render(
+                request,
+                "app/registration.html",
+                {"form": form, "year": datetime.now().year},
+            )
+
+
+class BlogPosts(ListView):
+
+    template_name = "app/blog.html"
+    model = Blog
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        update_context(context, {"title": "Статьи"})
+        return context
+
+
+class BlogPost(DetailView):
+    template_name = "app/blogpost.html"
+    model = Blog
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        update_context(context)
+        return context

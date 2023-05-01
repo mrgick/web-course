@@ -105,6 +105,12 @@ input[type="checkbox"].input-validation-error {
     border-color: #4E9ED7;
 }
 
+.navbar-inverse .navbar-collapse,
+.navbar-inverse .navbar-form {
+    color: white;
+    border-color: #4E9ED7;
+}
+
 .navbar-inverse .navbar-brand:hover,
 .navbar-inverse .navbar-brand:focus {
     color: aqua;
@@ -167,4 +173,13 @@ a:focus {
 .btn-default:focus {
     color: rgb(81, 231, 231);
     background-color: #ffffff;
+}
+
+.control-label {
+    color: #184074;
+}
+
+textarea {
+    min-width: 100px;
+    max-width: 10000px;
 }

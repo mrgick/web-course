@@ -7,10 +7,9 @@ from datetime import datetime
 from django.shortcuts import render, redirect
 from django.views.generic.base import TemplateView, View
 from django.views.generic import DetailView, ListView
-from django.db import models
-from .models import Blog
+from .models import Blog, Comment
 
-from .forms import BootstrapRegistationForm, FeedbackForm
+from .forms import BootstrapRegistationForm, FeedbackForm, CommentForm
 from .utils import update_context
 
 
@@ -154,5 +153,16 @@ class BlogPost(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        update_context(context)
+        comments = Comment.objects.filter(post=kwargs['object'].id)
+        form = CommentForm()
+        update_context(context, {"comments": comments, "form": form})
         return context
+
+    def post(self, request, pk):
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.author = request.user
+            comment.post = Blog.objects.get(id=pk)
+            comment.save()
+            return redirect('blogpost', pk=pk)

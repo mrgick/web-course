@@ -6,9 +6,11 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.utils.translation import gettext_lazy as _
 
+from .models import Comment
+
 
 class BootstrapAuthenticationForm(AuthenticationForm):
-    """Authentication form which uses boostrap CSS."""
+    """Authentication form which uses bootstrap CSS."""
 
     username = forms.CharField(
         max_length=254,
@@ -84,3 +86,15 @@ class FeedbackForm(forms.Form):
         ],
         widget=forms.Select(attrs={"class": "form-select"}),
     )
+
+
+class CommentForm(forms.ModelForm):
+    text = forms.CharField(
+        label="Комментарий",
+        required=True,
+        widget=forms.Textarea(attrs={"class": "form-control"}),
+    )
+    class Meta:
+        model = Comment
+        fields = ("text",)
+        labels = {"text": "Комментарий"}

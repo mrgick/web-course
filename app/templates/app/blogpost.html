@@ -6,7 +6,36 @@
 
 <p> {{object.content|linebreaksbr}} </p>
 
-<br/>
+<br />
 <p><a href="{% url 'blog' %}"> Назад </a> </p>
+
+<br />
+<hr />
+
+{% if user.is_authenticated %}
+
+<h3>Комментарии</h3>
+
+<form class="form-horizontal" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        {% for field in form%}
+        <div class="col-md-12 control-label">{{ field }}</div>
+        {% endfor%}
+    </div>
+    <div><button type="submit" class="save btn btn-default"> Оставить комментарий </button>
+</form>
+{% else %}
+<h3> Для добавления своего комментария, пожалуйста, авторизуйтесь </h3>
+{% endif %}
+
+{% for comment in comments %}
+<hr />
+<div class="form-group">
+    <h5 class="col-md-10" style="font-weight: bold;"> {{comment.author}} </h5>
+    <h6 class="col-md-2" style="color:grey; text-align:right">{{comment.get_date}}</h6>
+</div>
+<p> {{comment.text|linebreaksbr}} </p>
+{% endfor %}
 
 {% endblock %}

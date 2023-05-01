@@ -67,6 +67,10 @@ input[type="checkbox"].input-validation-error {
     height: 150px;
 }
 
+.logo-text>h1 {
+    color: #4083b3;
+}
+
 .links>li {
     padding: 15px;
 }
@@ -146,14 +150,21 @@ address {
 
 /* links */
 a {
-    color: #4E9ED7;
+    color: #6e98cf;
 }
 
 a:hover,
 a:focus {
-    color: aqua !important;
+    color: rgb(81, 231, 231);
     text-decoration: underline;
 }
-a:visited {
-    color: #b985d6;
+
+.btn-default {
+    color: #6e98cf;
+}
+
+.btn-default:hover,
+.btn-default:focus {
+    color: rgb(81, 231, 231);
+    background-color: #ffffff;
 }

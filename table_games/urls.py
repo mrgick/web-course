@@ -19,6 +19,7 @@ urlpatterns = [
     path('newblogpost/', views.NewBlogPost.as_view(), name='newblogpost'),
     path("contact/", views.Contact.as_view(), name="contact"),
     path("about/", views.About.as_view(), name="about"),
+    path("videos/", views.Videos.as_view(), name="videos"),
     path("useful-links/", views.UsefulLinks.as_view(), name="useful_links"),
     path("feedback/", views.Feedback.as_view(), name="feedback"),
     path(

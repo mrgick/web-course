@@ -1,0 +1,20 @@
+{% extends "app/layout.html" %}
+
+{% block content %}
+
+<h2>{{ title }}.</h2>
+<h3>{{ message }}</h3>
+
+<hr>
+<div>
+    <h2>Видео о настольных играх.</h2>
+    <video src="/static/app/video/table_games.mp4" controls="controls" width="960" height="540" poster="/static/app/img/table_game_preview.jpg"></video>
+</div>
+<div>
+    <h2>Видео об игре монополия.</h2>
+    <video src="/static/app/video/monopoly.mp4" controls="controls" width="960" height="540" poster="/static/app/img/monopoly_preview.jpg"></video>
+</div>
+
+
+
+{% endblock %}

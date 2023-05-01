@@ -28,7 +28,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a href="/" class="navbar-brand navbar-brand-img"><img src="{% static 'app/img/logo.svg' %}"
-                        alt="Dice In Piece">Dice In Piece</a>
+                        alt="Dice In Piece">DIP</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -39,7 +39,8 @@
                     {% endif %}
                     <li><a href="{% url 'about' %}">О нас</a></li>
                     <li><a href="{% url 'contact' %}">Контакты</a></li>
-                    <li><a href="{% url 'useful_links' %}">Полезные ресурсы</a></li>
+                    <li><a href="{% url 'useful_links' %}">Ресурсы</a></li>
+                    <li><a href="{% url 'videos' %}">Видео</a></li>
                     <li><a href="{% url 'feedback' %}">Обратная связь</a></li>
                 </ul>
                 {% include 'app/loginpartial.html' %}

@@ -153,7 +153,7 @@ class BlogPost(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        comments = Comment.objects.filter(post=kwargs['object'].id)
+        comments = Comment.objects.filter(post=kwargs["object"].id)
         form = CommentForm()
         update_context(context, {"comments": comments, "form": form})
         return context
@@ -165,7 +165,7 @@ class BlogPost(DetailView):
             comment.author = request.user
             comment.post = Blog.objects.get(id=pk)
             comment.save()
-            return redirect('blogpost', pk=pk)
+            return redirect("blogpost", pk=pk)
 
 
 class NewBlogPost(View):
@@ -186,5 +186,20 @@ class NewBlogPost(View):
             post = form.save(commit=False)
             post.author = request.user
             post.save()
-            return redirect('blogpost', pk=post.id)
+            return redirect("blogpost", pk=post.id)
         return self.get(request, form)
+
+
+class Videos(TemplateView):
+    template_name = "app/video.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        update_context(
+            context,
+            {
+                "title": "Видеозаписи",
+                "message": "Далее представлены видео, связанные с настольными играми.",
+            },
+        )
+        return context

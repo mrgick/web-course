@@ -1,6 +1,9 @@
 body {
     padding-top: 50px;
     padding-bottom: 20px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #162c3b;
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -117,4 +120,40 @@ input[type="checkbox"].input-validation-error {
     width: 44px;
     height: 40px;
     padding-right: 10px;
+}
+
+/* headlines */
+h1,
+h2 {
+    color: #4083b3;
+}
+
+h3,
+h4,
+h5,
+h6 {
+    color: #4E9ED7;
+}
+
+/* texts */
+span,
+p,
+address {
+    font-size: 14px;
+    line-height: 20px;
+    color: #162c3b;
+}
+
+/* links */
+a {
+    color: #4E9ED7;
+}
+
+a:hover,
+a:focus {
+    color: aqua !important;
+    text-decoration: underline;
+}
+a:visited {
+    color: #b985d6;
 }

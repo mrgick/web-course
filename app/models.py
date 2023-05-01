@@ -19,6 +19,7 @@ class Blog(models.Model):
     author = models.ForeignKey(
         User, null=True, blank=True, on_delete=models.SET_NULL, verbose_name="Автор"
     )
+    image = models.FileField(default="temp.jpg", verbose_name="Путь к картинке")
 
     def get_absolute_url(self):
         """Метод возвращает строку с URL-адресом записи."""
@@ -37,7 +38,7 @@ class Blog(models.Model):
 class Comment(models.Model):
     text = models.TextField(verbose_name="Текст комментария")
     date = models.DateTimeField(
-        default=timezone.now, db_index=True, verbose_name="Опубликована"
+        default=timezone.now, db_index=True, verbose_name="Опубликован"
     )
     author = models.ForeignKey(
         User,
@@ -55,7 +56,7 @@ class Comment(models.Model):
         return self.date.strftime("%d-%m-%Y, %H:%M")
 
     def __str__(self):
-        return f'{self.post.title} {self.author.username} ({self.get_date()})'
+        return f"{self.post.title} {self.author.username} ({self.get_date()})"
 
     class Meta:
         db_table = "Comments"

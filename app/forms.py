@@ -6,7 +6,7 @@ from django import forms
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.utils.translation import gettext_lazy as _
 
-from .models import Comment
+from .models import Comment, Blog
 
 
 class BootstrapAuthenticationForm(AuthenticationForm):
@@ -94,7 +94,29 @@ class CommentForm(forms.ModelForm):
         required=True,
         widget=forms.Textarea(attrs={"class": "form-control"}),
     )
+
     class Meta:
         model = Comment
         fields = ("text",)
         labels = {"text": "Комментарий"}
+
+
+class BlogForm(forms.ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for field in self:
+            field.field.widget.attrs["class"] = "form-control"
+
+    image = forms.FileField(required=False, label="Изображение")
+
+    class Meta:
+        model = Blog
+        fields = ("title", "description", "content", "image")
+        labels = {
+            "title": "Заголовок",
+            "description": "Краткое содержание",
+            "content": "Полное содержание",
+            "image": "Изображение",
+        }
+

@@ -9,7 +9,7 @@ from django.views.generic.base import TemplateView, View
 from django.views.generic import DetailView, ListView
 from .models import Blog, Comment
 
-from .forms import BootstrapRegistationForm, FeedbackForm, CommentForm
+from .forms import BootstrapRegistationForm, FeedbackForm, CommentForm, BlogForm
 from .utils import update_context
 
 
@@ -166,3 +166,25 @@ class BlogPost(DetailView):
             comment.post = Blog.objects.get(id=pk)
             comment.save()
             return redirect('blogpost', pk=pk)
+
+
+class NewBlogPost(View):
+    def get(self, request, form=None):
+        if not form:
+            form = BlogForm()
+        message = {
+            "title": "Создать статью",
+            "message": "Далее представлена форма для создания статьи.",
+            "form": form,
+            "year": datetime.now().year,
+        }
+        return render(request, "app/newblogpost.html", message)
+
+    def post(self, request):
+        form = BlogForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user
+            post.save()
+            return redirect('blogpost', pk=post.id)
+        return self.get(request, form)

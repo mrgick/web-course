@@ -34,6 +34,9 @@
                 <ul class="nav navbar-nav">
                     <li><a href="{% url 'home' %}">Главная</a></li>
                     <li><a href="{% url 'blog' %}">Блог</a></li>
+                    {% if user.is_superuser %}
+                    <li><a href="{% url 'newblogpost' %}">Создать статью</a></li>
+                    {% endif %}
                     <li><a href="{% url 'about' %}">О нас</a></li>
                     <li><a href="{% url 'contact' %}">Контакты</a></li>
                     <li><a href="{% url 'useful_links' %}">Полезные ресурсы</a></li>

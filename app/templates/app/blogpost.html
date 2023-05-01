@@ -4,7 +4,17 @@
 
 <h2> {{object.title}} </h2>
 
-<p> {{object.content|linebreaksbr}} </p>
+{% if object.image and object.image.url != '/media/temp.jpg' %}
+<div style="min-height:500px;">
+    <img src="{{ object.image.url }}" alt="Картинка статьи блога" class="img-blog" />
+    <p> {{object.content|linebreaksbr}} </p>
+</div>
+{% else %}
+<div>
+    <p> {{object.content|linebreaksbr}} </p>
+</div>
+{% endif %}
+
 
 <br />
 <p><a href="{% url 'blog' %}"> Назад </a> </p>

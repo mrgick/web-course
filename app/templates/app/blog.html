@@ -3,22 +3,32 @@
 {% block content %}
 
 <h2>{{ title }}</h2>
-
-{% for post in object_list %}
-
 <hr />
 
-<div class="">
+<div style="display: flex; flex-direction: row; flex-wrap: wrap">
+    {% for post in object_list %}
 
-    <h3> {{post.title}} </h3>
 
-    <h4> {{post.posted}} </h4>
+    <div class="card" style="width: 30rem; margin: 40px">
+        <img style="width:30rem; border-radius:5%;" src="{{ post.image.url }}" class="card-img-top">
+        <div class="card-body">
+            <div style="display: flex; flex-direction: row">
+                <h4 class="card-title">{{ post.title }}</h4>
+                <div style="
+          background: {{ card.color }};
+          width: 20px;
+          height: 20px;
+          margin-left: 10px;
+          border-radius: 50%;
+        "></div>
+            </div>
+            <p class="card-text" style="color:grey;"> {{post.posted}} </p>
+            <p class="card-text">{{ post.description }}</p>
+            <p><a href="{% url 'blogpost' pk=post.id %}"> Читать далее </a> </p>
+        </div>
+    </div>
 
-    <p> {{post.description}} </p>
-    <p><a href="{% url 'blogpost' pk=post.id %}"> Читать далее </a> </p>
-
+    {% endfor %}
 </div>
-
-{% endfor %}
 
 {% endblock %}

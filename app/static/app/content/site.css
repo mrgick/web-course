@@ -183,3 +183,15 @@ textarea {
     min-width: 100px;
     max-width: 10000px;
 }
+
+.carousel-caption > p {
+    color: white;
+}
+.img-responsive {
+    height: 300px !important;
+    display: block !important;
+    margin-left: auto;
+    margin-right: auto;
+    filter: blur(4px);
+    -webkit-filter: blur(4px);
+}

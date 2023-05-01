@@ -41,11 +41,13 @@
 
 {% for comment in comments %}
 <hr />
-<div class="form-group">
+<div class="row">
     <h5 class="col-md-10" style="font-weight: bold;"> {{comment.author}} </h5>
     <h6 class="col-md-2" style="color:grey; text-align:right">{{comment.get_date}}</h6>
 </div>
-<p> {{comment.text|linebreaksbr}} </p>
+<div class="row">
+    <p class="col-md-12"> {{comment.text|linebreaksbr}} </p>
+</div>
 {% endfor %}
 
 {% endblock %}
